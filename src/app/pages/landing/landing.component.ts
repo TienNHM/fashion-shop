@@ -26,6 +26,7 @@ import { FooterWidget } from './components/footer-widget';
                 <footer-widget />
             </div>
         </div>
-    `
+    `,
+    styleUrls: ['./landing.component.scss']
 })
 export class Landing {}
