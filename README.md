@@ -2,6 +2,45 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
+## Các bước thực hiện thêm một component mới
+
+1. Tạo mới component:
+```bash
+ng generate component <component-name>
+```
+
+Ví dụ:
+```bash
+ng g c app/pages/products/product-list --standalone
+```
+
+Lệnh trên sẽ tạo ra một component mới có tên là `ProductListComponent` trong thư mục `app/pages/products`. Thêm `--standalone` để tạo ra một component không cần phụ thuộc vào một module nào khác.
+
+2. Tạo Routing cho component mới:
+Tạo mới file [product.routes.ts](src/app/pages/products/product.routes.ts) trong thư mục `app/pages/products` và thêm nội dung sau:
+
+```typescript
+import { Routes } from '@angular/router';
+import { ProductListComponent } from './product-list/product-list.component';
+
+export const productsRoutes: Routes = [
+  { path: '', component: ProductListComponent },
+];
+```
+
+3. Cập nhật file [app-routing.module.ts](src/app/app-routing.module.ts) để thêm routing cho component mới:
+
+```typescript
+export const appRoutes: Routes = [
+    { path: 'products', loadChildren: () => import('./app/pages/products/product.routes').then(m => m.productsRoutes) },
+    ...
+];
+```
+
+4. Cập nhật API trong thư mục [service](src/app/pages/service/) nếu cần thiết.
+- Thêm class/interface mới nếu cần thiết (cho DTO, request, response, ...).
+- Thêm mới API service nếu cần thiết.
+
 ## Development server
 
 To start a local development server, run:
