@@ -19,7 +19,9 @@ export interface Product {
     rating?: number;
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ProductService {
     getProductsData() {
         return [
@@ -1255,7 +1257,7 @@ export class ProductService {
         'Yoga Set'
     ];
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     getProductsMini() {
         return Promise.resolve(this.getProductsData().slice(0, 5));
